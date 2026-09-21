@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#eb0a1e">
+  <meta name="description" content="Tarjeta digital de contacto de Toyota Satélite.">
+  <title>Tarjeta digital | Toyota Satélite</title>
+  <link rel="stylesheet" href="./styles.css">
+  <script type="module" src="./app.js"></script>
+</head>
+<body>
+  <main class="card">
+    <p id="status" class="status" role="status">Cargando tarjeta…</p>
+    <noscript><p class="status">Activa JavaScript para ver la tarjeta y sus datos de contacto.</p></noscript>
+    <article id="profile" hidden aria-labelledby="employee-name">
+      <header class="hero">
+        <img id="hero-image" class="hero-image" alt="Automóvil Toyota" fetchpriority="high">
+        <div class="brand"><img id="agency-logo" alt="Toyota Satélite"></div>
+      </header>
+      <section class="identity">
+        <img id="portrait" class="portrait" width="128" height="128" alt="">
+        <span class="eyebrow">TU CONTACTO TOYOTA</span>
+        <h1 id="employee-name"></h1>
+        <p id="employee-role" class="role"></p>
+        <p id="agency-name" class="agency"></p>
+        <nav class="contact" aria-label="Contactar al empleado">
+          <a id="phone" class="contact-button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3H4a1 1 0 0 0-1 1c0 9.4 7.6 17 17 17a1 1 0 0 0 1-1v-3l-5-2-2 2a14 14 0 0 1-7-7l2-2-2-5Z"/></svg><span>Llamar</span></a>
+          <a id="whatsapp" class="contact-button" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 11.5a9 9 0 0 1-13.5 7.8L3 21l1.7-4.5A9 9 0 1 1 21 11.5Z"/><path d="M8 7c0 5 4 9 9 9l1-3-3-1-1 1-3-3 1-1-1-3-3 1Z"/></svg><span>WhatsApp</span></a>
+          <a id="email" class="contact-button"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg><span>Correo</span></a>
+        </nav>
+      </section>
+      <section class="bank section" aria-labelledby="bank-heading">
+        <span class="eyebrow">INFORMACIÓN PARA TU COMPRA</span>
+        <h2 id="bank-heading">Cuentas bancarias <span>oficiales</span></h2>
+        <a id="bank-link" class="image-link" target="_blank" rel="noopener noreferrer" aria-label="Ampliar imagen de cuentas bancarias oficiales (abre otra pestaña)"><img id="bank-image" alt="Cuentas bancarias oficiales de Toyota Satélite. Abre la imagen para ampliar los datos." loading="lazy"></a>
+        <p class="hint">Toca la imagen para ampliar los datos.</p>
+      </section>
+      <section class="billing section" aria-labelledby="billing-heading">
+        <div><span class="eyebrow">ANTES DE FACTURAR</span><h2 id="billing-heading">Revisa tus datos<br>de facturación</h2><p>Confirma tus datos con tu asesor.</p></div>
+        <img id="billing-image" alt="Ilustración de revisión de facturas" loading="lazy">
+      </section>
+      <section class="reviews section" aria-labelledby="reviews-heading">
+        <span class="eyebrow">TU OPINIÓN CUENTA</span>
+        <h2 id="reviews-heading">Califica mi atención</h2>
+        <div class="review-row"><div><a id="reviews-link" class="review-button" target="_blank" rel="noopener noreferrer" hidden>Da clic <span aria-hidden="true">↗</span></a><span id="reviews-pending" class="pending">Enlace de reseñas pendiente</span></div><img id="reviews-image" alt="Google Reviews" loading="lazy"></div>
+      </section>
+      <footer><p id="footer-agency"></p><img id="alden-logo" alt="ALDEN" loading="lazy"></footer>
+    </article>
+  </main>
+</body>
+</html>

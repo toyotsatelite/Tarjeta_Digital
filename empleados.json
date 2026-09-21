@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "defaultEmployee": "fernando-diaz",
+  "agencies": {
+    "toyota-satelite": {
+      "name": "Toyota Satélite",
+      "countryCode": "52",
+      "logo": "assets/generales/logo-toyota-satelite.png",
+      "hero": "assets/generales/fondo-auto.jpg",
+      "bankImage": "assets/generales/cuentas-bancarias.png",
+      "billingImage": "assets/generales/facturacion.png",
+      "reviewsImage": "assets/generales/google-reviews.png",
+      "footerLogo": "assets/generales/logo-alden.png",
+      "reviewsUrl": null
+    }
+  },
+  "employees": {
+    "fernando-diaz": {
+      "name": "Fernando Diaz",
+      "role": "Gerente de Ventas",
+      "agencyId": "toyota-satelite",
+      "phone": "5579030264",
+      "whatsapp": "5579030264",
+      "email": "nombre@toyotasatelite.mx",
+      "photo": "assets/empleados/fernando-diaz.png"
+    }
+  }
+}
