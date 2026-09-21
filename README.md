@@ -1,36 +1,96 @@
 # Tarjetas digitales Toyota · V1
 
-Una plantilla HTML para todos los empleados, sin dependencias ni compilación. Los datos viven en `empleados.json`; las seis imágenes generales se comparten y cada empleado tiene su propia foto.
+Proyecto de tarjetas digitales para empleados Toyota, publicado como sitio estático mediante GitHub Pages.
+
+Repositorio: `toyotsatelite/Tarjeta_Digital`  
+Rama principal: `main`
+
+La solución utiliza una sola plantilla HTML para todos los empleados, sin dependencias ni compilación. Los datos viven en `empleados.json`; los recursos generales se comparten entre las tarjetas y cada empleado mantiene su propia fotografía.
 
 ## Tarjeta inicial
 
-`?id=fernando-diaz` carga a Fernando Diaz, Gerente de Ventas de Toyota Satélite. Sin `id`, se carga `defaultEmployee`. Un identificador desconocido muestra un aviso y nunca carga a otra persona como reemplazo.
+`?id=fernando-diaz` carga a Fernando Diaz, Gerente de Ventas de Toyota Satélite.
+
+Si no se proporciona `id`, se carga el empleado definido en `defaultEmployee`. Un identificador desconocido muestra un aviso y nunca carga a otra persona como reemplazo.
+
+Ejemplo:
+
+`https://toyotsatelite.github.io/Tarjeta_Digital/?id=fernando-diaz`
 
 ## Agregar empleados
 
-1. Sube la foto a `assets/empleados/` con un nombre único, en minúsculas y sin espacios.
-2. Agrega un registro en `employees` de `empleados.json`, con una clave única como `nombre-apellido` y los campos `name`, `role`, `agencyId`, `phone`, `whatsapp`, `email`, `photo`.
-3. Usa `agencyId: "toyota-satelite"` para reutilizar sus recursos. Los números se guardan como texto de 10 dígitos; el prefijo mexicano `52` está en la agencia y se añade a llamadas y WhatsApp.
-4. Comparte `https://fvgvisualink-debug.github.io/tdg_Toyo/?id=nombre-apellido` después de activar Pages.
+1. Sube la fotografía a `assets/empleados/` con un nombre único, en minúsculas y sin espacios.
+2. Agrega un registro en `employees` de `empleados.json`, con una clave única como `nombre-apellido` y los campos `name`, `role`, `agencyId`, `phone`, `whatsapp`, `email` y `photo`.
+3. Usa `agencyId: "toyota-satelite"` para reutilizar los recursos generales de Toyota Satélite.
+4. Los números se guardan como texto de 10 dígitos. El prefijo mexicano `52` está definido en la agencia y se añade automáticamente a llamadas y WhatsApp.
+5. Comparte la tarjeta con la estructura:
 
-No copies `index.html`. Cambiar la plantilla actualiza todas las tarjetas. Para otra agencia, agrega una entrada en `agencies` con sus recursos y asóciala al empleado.
+   `https://toyotsatelite.github.io/Tarjeta_Digital/?id=nombre-apellido`
 
-## Pendientes reales
+No copies ni dupliques `index.html`. Cambiar la plantilla actualiza todas las tarjetas.
 
-- Google Reviews: `agencies.toyota-satelite.reviewsUrl` queda en `null`. Se muestra «Enlace de reseñas pendiente», sin enlace falso. Sustituye por una URL HTTPS cuando esté disponible. Un empleado puede tener su propia `reviewsUrl` para sobrescribir la URL general.
-- Teléfono, WhatsApp y correo son exactamente los datos proporcionados para este ensayo; deben confirmarse antes de uso oficial.
-- No se inventaron horarios, dirección, teléfonos de servicio ni enlaces de facturación. La sección de facturación es informativa. Bancos utiliza la imagen original, que se puede ampliar.
+Para agregar otra agencia, crea una entrada en `agencies` dentro de `empleados.json`, define sus recursos compartidos y asóciala a cada empleado mediante `agencyId`.
+
+## Estructura principal
+
+- `index.html`: plantilla única de todas las tarjetas.
+- `styles.css`: diseño visual y comportamiento responsive.
+- `app.js`: carga dinámica de empleados, generación de enlaces de contacto, validaciones y manejo de errores.
+- `empleados.json`: información de agencias y empleados.
+- `assets/generales/`: imágenes y recursos compartidos.
+- `assets/empleados/`: fotografías individuales.
+- `tests/cards.test.js`: pruebas automáticas de selección de empleados, rutas, recursos y enlaces.
+
+## Pendientes actuales
+
+- Google Reviews: `agencies.toyota-satelite.reviewsUrl` está en `null`. Mientras no exista una URL oficial, se muestra «Enlace de reseñas pendiente». Un empleado puede tener su propia `reviewsUrl` para sobrescribir la URL general de la agencia.
+- Los datos de teléfono, WhatsApp y correo registrados deben confirmarse antes de uso oficial.
+- No se han agregado horarios, dirección, teléfonos de servicio ni enlaces de facturación que no hayan sido proporcionados.
+- La sección de facturación es informativa.
+- La sección de cuentas bancarias utiliza la imagen oficial disponible y permite ampliarla.
 
 ## Publicar en GitHub Pages
 
-1. Revisa e integra el PR a `main`.
-2. En **Settings → Pages → Build and deployment**, selecciona **Deploy from a branch**, rama **main**, carpeta **/(root)** y guarda.
-3. Espera a que GitHub termine el despliegue. La tarjeta será `https://fvgvisualink-debug.github.io/tdg_Toyo/?id=fernando-diaz`.
+1. Revisa e integra el cambio correspondiente a `main`.
+2. En **Settings → Pages → Build and deployment**, selecciona **Deploy from a branch**.
+3. Selecciona la rama **main** y la carpeta **/(root)**.
+4. Guarda la configuración y espera a que GitHub complete el despliegue.
 
-Las rutas son relativas y funcionan bajo `/tdg_Toyo/`; `.nojekyll` permite servir los archivos estáticos. No se requiere dominio propio ni claves. La configuración de Pages no se activa por crear esta rama.
+La URL del proyecto será:
+
+`https://toyotsatelite.github.io/Tarjeta_Digital/`
+
+Y cada empleado puede abrirse mediante su identificador:
+
+`https://toyotsatelite.github.io/Tarjeta_Digital/?id=fernando-diaz`
+
+Las rutas del proyecto son relativas para conservar correctamente la subruta `/Tarjeta_Digital/` de GitHub Pages. No se requiere dominio propio, backend ni claves para ejecutar el sitio.
 
 ## Verificación local
 
-Ejecuta `npm test` con Node.js para validar selección dinámica, enlaces, recursos y subrutas. Sirve la carpeta con un servidor HTTP local (por ejemplo, `python -m http.server 8000`) y abre `http://localhost:8000/?id=fernando-diaz`. Abrir el HTML con `file://` no permite cargar el JSON correctamente.
+Ejecuta:
 
-Comprueba también un `id` inexistente, móvil y escritorio. Los archivos de imágenes conservan los originales proporcionados. Todos los datos de este sitio son públicos al publicarlo.
+`npm test`
+
+Esto valida la selección dinámica de empleados, enlaces, recursos y comportamiento de rutas.
+
+Para visualizar el proyecto localmente, sirve la carpeta mediante un servidor HTTP, por ejemplo:
+
+`python -m http.server 8000`
+
+Después abre:
+
+`http://localhost:8000/?id=fernando-diaz`
+
+No abras directamente `index.html` mediante `file://`, ya que el navegador puede impedir la carga de `empleados.json`.
+
+Antes de publicar cambios, comprueba también:
+
+- Un `id` válido.
+- Un `id` inexistente.
+- Visualización móvil.
+- Visualización de escritorio.
+- Que las imágenes y rutas referenciadas existan.
+- Que no haya errores JavaScript en la consola.
+
+Todos los datos incluidos en el sitio serán públicos una vez publicados mediante GitHub Pages.
