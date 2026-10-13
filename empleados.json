@@ -5,6 +5,13 @@
     "toyota-satelite": {
       "name": "Toyota Satélite",
       "countryCode": "52",
+      "agencyPhone": "5553210550",
+      "customerServicePhone": "5579000949",
+      "salesHours": [
+        "Lunes a Viernes: 09:00 a 20:00 hrs",
+        "Sábados: 09:00 a 18:00 hrs",
+        "Domingos: 10:00 a 18:00 hrs"
+      ],
       "logo": "assets/generales/logo-toyota-satelite.png",
       "hero": "assets/generales/banner-sienna.jpg",
       "bankImage": "assets/generales/cuentas-bancarias.png",

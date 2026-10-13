@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync, existsSync } from 'node:fs';
-import { assetUrl, selectEmployee, contactLinks, reviewUrl } from '../app.js';
+import { assetUrl, selectEmployee, contactLinks, footerDetails, reviewUrl } from '../app.js';
 const data = JSON.parse(readFileSync(new URL('../empleados.json', import.meta.url)));
 test('Default, explicit employee and safe unknown IDs', () => {
   assert.equal(selectEmployee(data, '').employee.name, 'Fernando Diaz');
@@ -27,6 +27,11 @@ test('All seven image paths exist and preserve Pages project subpath', () => {
 test('Contact destinations and configured review link', () => {
   const { employee, agency } = selectEmployee(data, '');
   assert.deepEqual(contactLinks(employee, agency), {phone:'tel:+525579030264',whatsapp:'https://wa.me/525579030264',email:'mailto:nombre@toyotasatelite.mx'});
+  assert.deepEqual(footerDetails(agency), {
+    agencyPhone:'tel:+525553210550',
+    customerServicePhone:'tel:+525579000949',
+    salesHours:['Lunes a Viernes: 09:00 a 20:00 hrs','Sábados: 09:00 a 18:00 hrs','Domingos: 10:00 a 18:00 hrs']
+  });
   assert.equal(reviewUrl(agency.reviewsUrl), 'https://search.google.com/local/writereview?placeid=ChIJfyasQNQC0oURVqSF9-1A3hM&source=g.page.m._&laa=merchant-review-solicitation');
   assert.equal(reviewUrl('https://example.com/review'), 'https://example.com/review');
   assert.throws(() => reviewUrl('javascript:alert(1)'));

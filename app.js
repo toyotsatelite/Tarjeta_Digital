@@ -19,13 +19,25 @@ export function selectEmployee(data, search) {
   return { employee, agency: data.agencies[employee.agencyId] };
 }
 
+function internationalNumber(number, countryCode) {
+  if (!/^\d{10}$/.test(number) || !/^\d{1,3}$/.test(countryCode)) throw new Error('Teléfono inválido.');
+  return countryCode + number;
+}
+
 export function contactLinks(employee, agency) {
-  const international = (number) => {
-    if (!/^\d{10}$/.test(number) || !/^\d{1,3}$/.test(agency.countryCode)) throw new Error('Teléfono inválido.');
-    return agency.countryCode + number;
-  };
   if (!/^[^\s@?&#]+@[^\s@?&#]+\.[^\s@?&#]+$/.test(employee.email)) throw new Error('Correo inválido.');
-  return { phone: 'tel:+' + international(employee.phone), whatsapp: 'https://wa.me/' + international(employee.whatsapp), email: 'mailto:' + employee.email };
+  return { phone: 'tel:+' + internationalNumber(employee.phone, agency.countryCode), whatsapp: 'https://wa.me/' + internationalNumber(employee.whatsapp, agency.countryCode), email: 'mailto:' + employee.email };
+}
+
+export function footerDetails(agency) {
+  if (!Array.isArray(agency.salesHours) || agency.salesHours.length === 0 || agency.salesHours.length > 7 || agency.salesHours.some((line) => typeof line !== 'string' || !line.trim() || line.length > 80)) {
+    throw new Error('Horario de ventas inválido.');
+  }
+  return {
+    agencyPhone: 'tel:+' + internationalNumber(agency.agencyPhone, agency.countryCode),
+    customerServicePhone: 'tel:+' + internationalNumber(agency.customerServicePhone, agency.countryCode),
+    salesHours: [...agency.salesHours]
+  };
 }
 
 export function reviewUrl(value) {
@@ -41,8 +53,9 @@ async function init() {
     if (!response.ok) throw new Error('No pudimos cargar la tarjeta. Intenta nuevamente más tarde.');
     const { employee, agency } = selectEmployee(await response.json(), location.search);
     const links = contactLinks(employee, agency);
+    const footer = footerDetails(agency);
     const review = reviewUrl(employee.reviewsUrl ?? agency.reviewsUrl);
-    for (const [id, value] of Object.entries({ 'employee-name': employee.name, 'employee-role': employee.role, 'agency-name': agency.name, 'footer-agency': agency.name })) $(id).textContent = value;
+    for (const [id, value] of Object.entries({ 'employee-name': employee.name, 'employee-role': employee.role, 'agency-name': agency.name })) $(id).textContent = value;
     const images = { 'hero-image': agency.hero, 'agency-logo': agency.logo, portrait: employee.photo, 'bank-image': agency.bankImage, 'billing-image': agency.billingImage, 'reviews-image': agency.reviewsImage, 'alden-logo': agency.footerLogo };
     for (const [id, path] of Object.entries(images)) {
       $(id).addEventListener('error', () => {
@@ -59,6 +72,13 @@ async function init() {
     $('agency-logo').alt = agency.name;
     $('bank-link').href = assetUrl(agency.bankImage);
     for (const [id, href] of Object.entries(links)) $(id).href = href;
+    $('footer-agency-call').href = footer.agencyPhone;
+    $('footer-customer-service').href = footer.customerServicePhone;
+    for (const line of footer.salesHours) {
+      const item = document.createElement('li');
+      item.textContent = line;
+      $('footer-hours').append(item);
+    }
     if (review) { $('reviews-link').href = review; $('reviews-link').hidden = false; $('reviews-pending').hidden = true; }
     document.title = employee.name + ' | ' + agency.name;
     $('profile').hidden = false;
