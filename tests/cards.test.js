@@ -24,10 +24,10 @@ test('All seven image paths exist and preserve Pages project subpath', () => {
   }
   for (const path of ['/assets/a.png','assets/../a.png','https://evil.example/a.png']) assert.throws(() => assetUrl(path));
 });
-test('Contact destinations and pending review link', () => {
+test('Contact destinations and configured review link', () => {
   const { employee, agency } = selectEmployee(data, '');
   assert.deepEqual(contactLinks(employee, agency), {phone:'tel:+525579030264',whatsapp:'https://wa.me/525579030264',email:'mailto:nombre@toyotasatelite.mx'});
-  assert.equal(reviewUrl(agency.reviewsUrl), null);
+  assert.equal(reviewUrl(agency.reviewsUrl), 'https://search.google.com/local/writereview?placeid=ChIJfyasQNQC0oURVqSF9-1A3hM&source=g.page.m._&laa=merchant-review-solicitation');
   assert.equal(reviewUrl('https://example.com/review'), 'https://example.com/review');
   assert.throws(() => reviewUrl('javascript:alert(1)'));
 });
