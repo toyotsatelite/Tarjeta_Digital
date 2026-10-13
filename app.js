@@ -26,7 +26,12 @@ function internationalNumber(number, countryCode) {
 
 export function contactLinks(employee, agency) {
   if (!/^[^\s@?&#]+@[^\s@?&#]+\.[^\s@?&#]+$/.test(employee.email)) throw new Error('Correo inválido.');
-  return { phone: 'tel:+' + internationalNumber(employee.phone, agency.countryCode), whatsapp: 'https://wa.me/' + internationalNumber(employee.whatsapp, agency.countryCode), email: 'mailto:' + employee.email };
+  const whatsappMessage = `Hola ${employee.name}, te estoy escribiendo desde tu tarjeta digital, deseo más información`;
+  return {
+    phone: 'tel:+' + internationalNumber(employee.phone, agency.countryCode),
+    whatsapp: 'https://wa.me/' + internationalNumber(employee.whatsapp, agency.countryCode) + '?text=' + encodeURIComponent(whatsappMessage),
+    email: 'mailto:' + employee.email
+  };
 }
 
 export function footerDetails(agency) {
