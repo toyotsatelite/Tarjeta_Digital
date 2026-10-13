@@ -14,6 +14,17 @@ test('Additional employees use the same template and shared agency', () => {
   assert.equal(selectEmployee(fixture, '?id=test-only').employee.name, 'TEST ONLY');
   assert.equal(selectEmployee(fixture, '?id=test-only').agency, fixture.agencies['toyota-satelite']);
 });
+test('Imported employee IDs resolve to complete, usable cards', () => {
+  const ids = ['Fernanda-Barrientos','Alejandro-Morales','Francisco-González','Viviana-Zúñiga','Gerardo-Flores'];
+  assert.equal(Object.keys(data.employees).length, 6);
+  for (const id of ids) {
+    const { employee, agency } = selectEmployee(data, '?id=' + encodeURIComponent(id));
+    assert.ok(employee.name && employee.role && employee.email);
+    assert.equal(employee.agencyId, 'toyota-satelite');
+    assert.ok(existsSync(new URL('../' + employee.photo, import.meta.url)), employee.photo);
+    assert.match(contactLinks(employee, agency).whatsapp, /^https:\/\/wa\.me\/52\d{10}\?text=Hola%20/);
+  }
+});
 test('All seven image paths exist and preserve Pages project subpath', () => {
   const a = data.agencies['toyota-satelite'];
   const paths = [a.logo,a.hero,a.bankImage,a.billingImage,a.reviewsImage,a.footerLogo,data.employees['fernando-diaz'].photo];
