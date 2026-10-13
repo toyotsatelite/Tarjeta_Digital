@@ -30,6 +30,7 @@ test('Contact destinations and configured review link', () => {
   assert.deepEqual(footerDetails(agency), {
     agencyPhone:'tel:+525553210550',
     customerServicePhone:'tel:+525579000949',
+    servicePhone:'tel:+525546041865',
     salesHours:['Lunes a Viernes: 09:00 a 20:00 hrs','Sábados: 09:00 a 18:00 hrs','Domingos: 10:00 a 18:00 hrs']
   });
   assert.equal(reviewUrl(agency.reviewsUrl), 'https://search.google.com/local/writereview?placeid=ChIJfyasQNQC0oURVqSF9-1A3hM&source=g.page.m._&laa=merchant-review-solicitation');

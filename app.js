@@ -36,6 +36,7 @@ export function footerDetails(agency) {
   return {
     agencyPhone: 'tel:+' + internationalNumber(agency.agencyPhone, agency.countryCode),
     customerServicePhone: 'tel:+' + internationalNumber(agency.customerServicePhone, agency.countryCode),
+    servicePhone: 'tel:+' + internationalNumber(agency.servicePhone, agency.countryCode),
     salesHours: [...agency.salesHours]
   };
 }
@@ -74,6 +75,7 @@ async function init() {
     for (const [id, href] of Object.entries(links)) $(id).href = href;
     $('footer-agency-call').href = footer.agencyPhone;
     $('footer-customer-service').href = footer.customerServicePhone;
+    $('footer-service').href = footer.servicePhone;
     for (const line of footer.salesHours) {
       const item = document.createElement('li');
       item.textContent = line;
