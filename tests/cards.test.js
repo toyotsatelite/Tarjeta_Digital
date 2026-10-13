@@ -26,7 +26,11 @@ test('All seven image paths exist and preserve Pages project subpath', () => {
 });
 test('Contact destinations and configured review link', () => {
   const { employee, agency } = selectEmployee(data, '');
-  assert.deepEqual(contactLinks(employee, agency), {phone:'tel:+525579030264',whatsapp:'https://wa.me/525579030264',email:'mailto:nombre@toyotasatelite.mx'});
+  assert.deepEqual(contactLinks(employee, agency), {
+    phone:'tel:+525579030264',
+    whatsapp:'https://wa.me/525579030264?text=Hola%20Fernando%20Diaz%2C%20te%20estoy%20escribiendo%20desde%20tu%20tarjeta%20digital%2C%20deseo%20m%C3%A1s%20informaci%C3%B3n',
+    email:'mailto:nombre@toyotasatelite.mx'
+  });
   assert.deepEqual(footerDetails(agency), {
     agencyPhone:'tel:+525553210550',
     customerServicePhone:'tel:+525579000949',
