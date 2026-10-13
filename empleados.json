@@ -31,6 +31,51 @@
       "whatsapp": "5579030264",
       "email": "nombre@toyotasatelite.mx",
       "photo": "assets/empleados/fernando-diaz.png"
+    },
+    "Fernanda-Barrientos": {
+      "name": "Fernanda Barrientos Ibarra",
+      "role": "Asesor de Ventas Autos Nuevos",
+      "agencyId": "toyota-satelite",
+      "phone": "5618635297",
+      "whatsapp": "5618635297",
+      "email": "fbarrientos@toyotasatelite.mx",
+      "photo": "assets/empleados/sin-foto.svg"
+    },
+    "Alejandro-Morales": {
+      "name": "Alejandro Morales Aguilar",
+      "role": "Asesor de Ventas Autos Seminuevos",
+      "agencyId": "toyota-satelite",
+      "phone": "5534241460",
+      "whatsapp": "5534241460",
+      "email": "amorales@toyotasatelite.mx",
+      "photo": "assets/empleados/sin-foto.svg"
+    },
+    "Francisco-González": {
+      "name": "Francisco Xavier González Luna",
+      "role": "Asesor de Ventas Autos Nuevos",
+      "agencyId": "toyota-satelite",
+      "phone": "5513777147",
+      "whatsapp": "5513777147",
+      "email": "fgonzalezl@toyotasatelite.mx",
+      "photo": "assets/empleados/sin-foto.svg"
+    },
+    "Viviana-Zúñiga": {
+      "name": "Viviana Zúñiga Pedraza",
+      "role": "Asesor de Ventas Autos Seminuevos",
+      "agencyId": "toyota-satelite",
+      "phone": "5534969377",
+      "whatsapp": "5534969377",
+      "email": "vzuniga@toyotasatelite.mx",
+      "photo": "assets/empleados/sin-foto.svg"
+    },
+    "Gerardo-Flores": {
+      "name": "Gerardo Flores Mejia",
+      "role": "Asesor de Ventas Autos Seminuevos",
+      "agencyId": "toyota-satelite",
+      "phone": "5554995484",
+      "whatsapp": "5554995484",
+      "email": "gflores@toyotasatelite.mx",
+      "photo": "assets/empleados/sin-foto.svg"
     }
   }
 }
