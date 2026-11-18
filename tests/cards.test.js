@@ -30,7 +30,9 @@ test('Esmeralda employees use the branch identity and support a missing email', 
   const agency = data.agencies['toyota-esmeralda'];
   assert.ok(existsSync(new URL('../' + agency.logo, import.meta.url)), agency.logo);
   assert.ok(existsSync(new URL('../' + agency.hero, import.meta.url)), agency.hero);
+  assert.ok(existsSync(new URL('../' + agency.bankImage, import.meta.url)), agency.bankImage);
   assert.notEqual(agency.hero, data.agencies['toyota-satelite'].hero);
+  assert.notEqual(agency.bankImage, data.agencies['toyota-satelite'].bankImage);
   assert.equal(agency.logoPlacement, 'below');
   for (const id of ids) {
     const { employee, agency: selectedAgency } = selectEmployee(data, '?id=' + id);
