@@ -33,7 +33,8 @@
         "Domingos: 10:00 a 17:00 hrs"
       ],
       "logo": "assets/generales/logo-toyota-esmeralda.png",
-      "hero": "assets/generales/banner-sienna.jpg",
+      "hero": "assets/generales/banner-toyotathon-noviembre-2026.webp",
+      "logoPlacement": "below",
       "bankImage": "assets/generales/cuentas-bancarias.png",
       "billingImage": "assets/generales/facturacion.png",
       "reviewsImage": "assets/generales/google-reviews.png",
