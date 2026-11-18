@@ -81,6 +81,7 @@ async function init() {
     $('portrait').alt = 'Fotografía de ' + employee.name;
     $('portrait').style.objectPosition = employee.portraitPosition || 'center';
     $('agency-logo').alt = agency.name;
+    $('agency-logo').parentElement.classList.toggle('brand--below', agency.logoPlacement === 'below');
     $('bank-link').href = assetUrl(agency.bankImage);
     for (const [id, href] of Object.entries(links)) {
       if (href) $(id).href = href;
