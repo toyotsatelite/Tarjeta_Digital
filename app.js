@@ -25,12 +25,16 @@ function internationalNumber(number, countryCode) {
 }
 
 export function contactLinks(employee, agency) {
-  if (!/^[^\s@?&#]+@[^\s@?&#]+\.[^\s@?&#]+$/.test(employee.email)) throw new Error('Correo inválido.');
+  let email = null;
+  if (employee.email) {
+    if (!/^[^\s@?&#]+@[^\s@?&#]+\.[^\s@?&#]+$/.test(employee.email)) throw new Error('Correo inválido.');
+    email = 'mailto:' + employee.email;
+  }
   const whatsappMessage = `Hola ${employee.name}, te estoy escribiendo desde tu tarjeta digital, deseo más información`;
   return {
     phone: 'tel:+' + internationalNumber(employee.phone, agency.countryCode),
     whatsapp: 'https://wa.me/' + internationalNumber(employee.whatsapp, agency.countryCode) + '?text=' + encodeURIComponent(whatsappMessage),
-    email: 'mailto:' + employee.email
+    email
   };
 }
 
@@ -75,9 +79,14 @@ async function init() {
       $(id).src = assetUrl(path);
     }
     $('portrait').alt = 'Fotografía de ' + employee.name;
+    $('portrait').style.objectPosition = employee.portraitPosition || 'center';
     $('agency-logo').alt = agency.name;
     $('bank-link').href = assetUrl(agency.bankImage);
-    for (const [id, href] of Object.entries(links)) $(id).href = href;
+    for (const [id, href] of Object.entries(links)) {
+      if (href) $(id).href = href;
+      else $(id).hidden = true;
+    }
+    $('email').parentElement.classList.toggle('contact--two', !links.email);
     $('footer-agency-call').href = footer.agencyPhone;
     $('footer-customer-service').href = footer.customerServicePhone;
     $('footer-service').href = footer.servicePhone;

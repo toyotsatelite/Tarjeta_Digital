@@ -20,6 +20,25 @@
       "reviewsImage": "assets/generales/google-reviews.png",
       "footerLogo": "assets/generales/logo-alden.png",
       "reviewsUrl": "https://search.google.com/local/writereview?placeid=ChIJfyasQNQC0oURVqSF9-1A3hM&source=g.page.m._&laa=merchant-review-solicitation"
+    },
+    "toyota-esmeralda": {
+      "name": "Toyota Esmeralda",
+      "countryCode": "52",
+      "agencyPhone": "5552329800",
+      "customerServicePhone": "5552329800",
+      "servicePhone": "5574598207",
+      "salesHours": [
+        "Lunes a Viernes: 09:00 a 20:00 hrs",
+        "Sábados: 09:00 a 18:00 hrs",
+        "Domingos: 10:00 a 17:00 hrs"
+      ],
+      "logo": "assets/generales/logo-toyota-esmeralda.png",
+      "hero": "assets/generales/banner-sienna.jpg",
+      "bankImage": "assets/generales/cuentas-bancarias.png",
+      "billingImage": "assets/generales/facturacion.png",
+      "reviewsImage": "assets/generales/google-reviews.png",
+      "footerLogo": "assets/generales/logo-alden.png",
+      "reviewsUrl": null
     }
   },
   "employees": {
@@ -75,6 +94,33 @@
       "phone": "5554995484",
       "whatsapp": "5554995484",
       "email": "gflores@toyotasatelite.mx",
+      "photo": "assets/empleados/sin-foto.svg"
+    },
+    "allan-sanchez": {
+      "name": "Allan A. Sánchez",
+      "role": "Gerente de Comonuevos",
+      "agencyId": "toyota-esmeralda",
+      "phone": "5579946920",
+      "whatsapp": "5565793466",
+      "email": "asanchez@toyotaesmeralda.mx",
+      "photo": "assets/empleados/sin-foto.svg"
+    },
+    "jovany-pucheta": {
+      "name": "Jovany D. Pucheta",
+      "role": "Ejecutivo de Ventas",
+      "agencyId": "toyota-esmeralda",
+      "phone": "5579946920",
+      "whatsapp": "5548046088",
+      "email": "jpucheta@toyotaesmeralda.mx",
+      "photo": "assets/empleados/jovany-pucheta.webp",
+      "portraitPosition": "center 25%"
+    },
+    "mayra-sanchez": {
+      "name": "Mayra Sánchez",
+      "role": "Ejecutivo de Ventas",
+      "agencyId": "toyota-esmeralda",
+      "phone": "5579946920",
+      "whatsapp": "5545800779",
       "photo": "assets/empleados/sin-foto.svg"
     }
   }
