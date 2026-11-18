@@ -16,7 +16,7 @@ test('Additional employees use the same template and shared agency', () => {
 });
 test('Imported employee IDs resolve to complete, usable cards', () => {
   const ids = ['Fernanda-Barrientos','Alejandro-Morales','Francisco-González','Viviana-Zúñiga','Gerardo-Flores'];
-  assert.equal(Object.keys(data.employees).length, 6);
+  assert.equal(Object.keys(data.employees).length, 9);
   for (const id of ids) {
     const { employee, agency } = selectEmployee(data, '?id=' + encodeURIComponent(id));
     assert.ok(employee.name && employee.role && employee.email);
@@ -24,6 +24,27 @@ test('Imported employee IDs resolve to complete, usable cards', () => {
     assert.ok(existsSync(new URL('../' + employee.photo, import.meta.url)), employee.photo);
     assert.match(contactLinks(employee, agency).whatsapp, /^https:\/\/wa\.me\/52\d{10}\?text=Hola%20/);
   }
+});
+test('Esmeralda employees use the branch identity and support a missing email', () => {
+  const ids = ['allan-sanchez','jovany-pucheta','mayra-sanchez'];
+  const agency = data.agencies['toyota-esmeralda'];
+  assert.ok(existsSync(new URL('../' + agency.logo, import.meta.url)), agency.logo);
+  for (const id of ids) {
+    const { employee, agency: selectedAgency } = selectEmployee(data, '?id=' + id);
+    assert.equal(selectedAgency, agency);
+    assert.ok(employee.name && employee.role);
+    assert.ok(existsSync(new URL('../' + employee.photo, import.meta.url)), employee.photo);
+    assert.match(contactLinks(employee, agency).whatsapp, /^https:\/\/wa\.me\/52\d{10}\?text=Hola%20/);
+  }
+  assert.equal(contactLinks(data.employees['mayra-sanchez'], agency).email, null);
+  assert.equal(data.employees['jovany-pucheta'].portraitPosition, 'center 25%');
+  assert.deepEqual(footerDetails(agency), {
+    agencyPhone:'tel:+525552329800',
+    customerServicePhone:'tel:+525552329800',
+    servicePhone:'tel:+525574598207',
+    salesHours:['Lunes a Viernes: 09:00 a 20:00 hrs','Sábados: 09:00 a 18:00 hrs','Domingos: 10:00 a 17:00 hrs']
+  });
+  assert.equal(reviewUrl(agency.reviewsUrl), null);
 });
 test('All seven image paths exist and preserve Pages project subpath', () => {
   const a = data.agencies['toyota-satelite'];
