@@ -97,6 +97,15 @@
       "email": "gflores@toyotasatelite.mx",
       "photo": "assets/empleados/sin-foto.svg"
     },
+    "maria-saavedra": {
+      "name": "Maria de Lourdes Saavedra Rodriguez",
+      "role": "Asesor de ventas nuevos",
+      "agencyId": "toyota-satelite",
+      "phone": "5543321868",
+      "whatsapp": "5543321868",
+      "email": "mlsaavedra@toyotasatelite.mx",
+      "photo": "assets/empleados/maria-saavedra.webp"
+    },
     "allan-sanchez": {
       "name": "Allan A. Sánchez",
       "role": "Gerente de Comonuevos",

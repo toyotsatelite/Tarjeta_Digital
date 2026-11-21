@@ -16,7 +16,7 @@ test('Additional employees use the same template and shared agency', () => {
 });
 test('Imported employee IDs resolve to complete, usable cards', () => {
   const ids = ['Fernanda-Barrientos','Alejandro-Morales','Francisco-González','Viviana-Zúñiga','Gerardo-Flores'];
-  assert.equal(Object.keys(data.employees).length, 9);
+  assert.equal(Object.keys(data.employees).length, 10);
   for (const id of ids) {
     const { employee, agency } = selectEmployee(data, '?id=' + encodeURIComponent(id));
     assert.ok(employee.name && employee.role && employee.email);
@@ -24,6 +24,18 @@ test('Imported employee IDs resolve to complete, usable cards', () => {
     assert.ok(existsSync(new URL('../' + employee.photo, import.meta.url)), employee.photo);
     assert.match(contactLinks(employee, agency).whatsapp, /^https:\/\/wa\.me\/52\d{10}\?text=Hola%20/);
   }
+});
+test('Maria Saavedra card uses the Satelite identity and supplied contact data', () => {
+  const { employee, agency } = selectEmployee(data, '?id=maria-saavedra');
+  assert.equal(employee.name, 'Maria de Lourdes Saavedra Rodriguez');
+  assert.equal(employee.role, 'Asesor de ventas nuevos');
+  assert.equal(employee.agencyId, 'toyota-satelite');
+  assert.ok(existsSync(new URL('../' + employee.photo, import.meta.url)), employee.photo);
+  assert.deepEqual(contactLinks(employee, agency), {
+    phone:'tel:+525543321868',
+    whatsapp:'https://wa.me/525543321868?text=Hola%20Maria%20de%20Lourdes%20Saavedra%20Rodriguez%2C%20te%20estoy%20escribiendo%20desde%20tu%20tarjeta%20digital%2C%20deseo%20m%C3%A1s%20informaci%C3%B3n',
+    email:'mailto:mlsaavedra@toyotasatelite.mx'
+  });
 });
 test('Esmeralda employees use the branch identity and support a missing email', () => {
   const ids = ['allan-sanchez','jovany-pucheta','mayra-sanchez'];
